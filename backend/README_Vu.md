@@ -1,14 +1,7 @@
-# Vai trò thành viên
+# Vai trò của Vũ
 
-**Họ tên:** Phan Thanh Vũ  
-**Vai trò:** Backend Developer  
-
-## 📋 Nhiệm vụ chính
-- Thiết lập môi trường Node.js + Express  
-- Tạo và quản lý các API RESTful cho người dùng  
-- Kết nối và xử lý dữ liệu với MongoDB  
-- Hỗ trợ nhóm Frontend trong việc trao đổi dữ liệu qua API  
-
-## 💻 Kết quả đã thực hiện
-- Khởi tạo dự án Node.js và cài Express  
-- Tạo file `server.js` và chạy thành công server tại `http://localhost:3000`  
+- Phụ trách phần **Backend** của dự án.  
+- Tạo REST API cho User (GET/POST).  
+- Kết nối **MongoDB** để lưu trữ dữ liệu.  
+- Kiểm tra hoạt động server bằng Postman.  
+- Hỗ trợ nhóm khi cần debug API.
