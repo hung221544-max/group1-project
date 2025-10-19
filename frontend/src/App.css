@@ -1,51 +1,68 @@
-/* Căn giữa toàn bộ nội dung */
-.App {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  margin-top: 40px;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 50px auto; /* căn giữa */
+  text-align: center; /* căn chữ giữa */
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 1.3em;
+  margin-top: 30px;
 }
 
 /* Form thêm user */
-form {
-  margin: 20px auto;
+.add-user-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  width: 300px;
+  margin-bottom: 30px;
 }
 
-/* Ô input */
-input {
-  padding: 8px;
-  width: 100%;
+.add-user-form input {
+  width: 80%;
+  padding: 10px;
   border: 1px solid #ccc;
   border-radius: 6px;
+  font-size: 15px;
 }
 
-/* Nút thêm */
-button {
-  padding: 8px 16px;
-  background-color: #4CAF50;
+.add-user-form button {
+  background-color: #4caf50;
   color: white;
   border: none;
+  padding: 10px 25px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 15px;
 }
 
-button:hover {
+.add-user-form button:hover {
   background-color: #45a049;
 }
 
 /* Danh sách user */
-ul {
+.user-list {
   list-style: none;
   padding: 0;
 }
 
-li {
-  background: #f2f2f2;
-  padding: 10px;
+.user-item {
+  background-color: #f3f3f3;
+  margin: 5px 0;
+  padding: 12px;
   border-radius: 6px;
-  margin-bottom: 5px;
+  text-align: center;
+  font-size: 16px;
 }
