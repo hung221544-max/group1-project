@@ -1,23 +1,23 @@
-require('dotenv').config(); // ⚠️ dòng này luôn nằm đầu tiên!
-
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const cors = require('cors');
+const userRoutes = require('./routes/user');
 
+dotenv.config();
 const app = express();
-app.use(cors());
+
 app.use(express.json());
+app.use(cors()); // Cho phép frontend ở port khác gọi API
 
-// ✅ Thử in ra xem biến MONGO_URI có giá trị không
-console.log("🧭 MONGO_URI =", process.env.MONGO_URI);
-
-// ✅ Kết nối MongoDB
+// Kết nối MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB kết nối thành công"))
-  .catch(err => console.error("❌ MongoDB kết nối bị lỗi:", err));
+  .catch(err => console.error("❌ MongoDB kết nối bị lỗi", err));
 
-const userRoutes = require('./routes/user');
-app.use('/', userRoutes);
+// Sử dụng routes
+app.use('/users', userRoutes);
 
-const PORT = process.env.PORT || 3000;
+// Đổi port sang 5000
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
