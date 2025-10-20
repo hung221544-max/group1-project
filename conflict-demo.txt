@@ -1,1 +1,1 @@
-Đây là code của database
+Đây là code của cả backend và database
