@@ -1,47 +1,42 @@
-const User = require('../models/User');
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
-
-// [GET] /users
-exports.getUsers = async (req, res) => {
+// Đăng ký
+export const signup = async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-};
+    const { name, email, password } = req.body;
+    const existingUser = await User.findOne({ email });
+    if (existingUser) return res.status(400).json({ message: "Email đã tồn tại" });
 
-// [POST] /users
-exports.createUser = async (req, res) => {
-  try {
-    const newUser = new User({
-      name: req.body.name,
-      email: req.body.email
-    });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
-    res.status(201).json(newUser);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
+
+    res.status(201).json({ message: "Đăng ký thành công" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-// [PUT] /users/:id
-exports.updateUser = async (req, res) => {
+// Đăng nhập
+export const login = async (req, res) => {
   try {
-    const updatedUser = await User.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedUser) return res.status(404).json({ message: 'User not found' });
-    res.json(updatedUser);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) return res.status(400).json({ message: "Email không tồn tại" });
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) return res.status(400).json({ message: "Sai mật khẩu" });
+
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    res.json({ message: "Đăng nhập thành công", token });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-// [DELETE] /users/:id
-exports.deleteUser = async (req, res) => {
-  try {
-    await User.findByIdAndDelete(req.params.id);
-    res.json({ message: 'User deleted' });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+// Đăng xuất
+export const logout = async (req, res) => {
+  res.json({ message: "Đăng xuất thành công (xóa token ở client)" });
 };
