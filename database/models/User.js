@@ -5,29 +5,26 @@ const bcrypt = require('bcrypt');
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-    trim: true
+    required: true
   },
   email: {
     type: String,
     required: true,
-    unique: true,
-    lowercase: true,
-    trim: true
+    unique: true
   },
-  password: {
+  password: {   // thêm trường password
     type: String,
     required: true
   },
-  role: {
+  role: {       // thêm role: mặc định là 'user'
     type: String,
     enum: ['user', 'admin'],
     default: 'user'
   }
-}, { timestamps: true });
+});
 
-// Mã hóa password trước khi lưu
-userSchema.pre('save', async function(next) {
+// Mã hóa mật khẩu trước khi lưu
+userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   try {
     const salt = await bcrypt.genSalt(10);
@@ -38,12 +35,5 @@ userSchema.pre('save', async function(next) {
   }
 });
 
-// Thêm method để so sánh password (dùng khi login)
-userSchema.methods.comparePassword = async function(candidatePassword) {
-  return bcrypt.compare(candidatePassword, this.password);
-};
-
-// Tạo model
 const User = mongoose.model('User', userSchema);
 module.exports = User;
-
