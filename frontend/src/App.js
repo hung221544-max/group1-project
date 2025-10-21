@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import UserList from './UserList';
-import AddUser from './AddUser';
+import UserList from './components/UserList';
+import AddUser from './components/AddUser';
 import './App.css';
 
 function App() {
