@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 //import UserList from './components/UserList';
 //import AddUser from './components/AddUser';
-import Signup from "./components/SignupForm";
-import Login from "./components/LoginForm";
+import LoginForm from "./components/LoginForm";
+import SignupForm from "./components/SignupForm";
+
 import './App.css';
 
 /*function App() {
@@ -33,12 +34,28 @@ import './App.css';
   );
 }*/
 function App() {
+  const [activeTab, setActiveTab] = useState("login"); // mặc định hiện đăng nhập
+
   return (
-    <div className="container">
-      <h1>Authentication cơ bản</h1>
-      <div style={{ display: "flex", gap: "50px" }}>
-        <Signup />
-        <Login />
+    <div className="app-container">
+      <h1>Đăng Ký Đăng Nhập</h1>
+      <div className="tab-buttons">
+        <button
+          className={activeTab === "login" ? "active" : ""}
+          onClick={() => setActiveTab("login")}
+        >
+          Đăng nhập
+        </button>
+        <button
+          className={activeTab === "signup" ? "active" : ""}
+          onClick={() => setActiveTab("signup")}
+        >
+          Đăng ký
+        </button>
+      </div>
+
+      <div className="form-area">
+        {activeTab === "login" ? <LoginForm /> : <SignupForm />}
       </div>
     </div>
   );

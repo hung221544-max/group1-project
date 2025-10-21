@@ -164,3 +164,117 @@ button {
     transform: translateY(0);
   }
 }
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e0e7ff, #fef9c3);
+  font-family: "Segoe UI", sans-serif;
+}
+
+.app-title {
+  color: #1e3a8a;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.form-wrapper {
+  display: flex;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  gap: 40px;
+}
+
+.form-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 280px;
+}
+
+.form-box h2 {
+  color: #2563eb;
+  margin-bottom: 10px;
+}
+
+.divider {
+  width: 2px;
+  background: #e5e7eb;
+  margin: 0 10px;
+}
+body {
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f5f6fa;
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.tab-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #dcdde1;
+  transition: 0.3s;
+}
+
+.tab-buttons button.active {
+  background-color: #0097e6;
+  color: white;
+}
+
+.tab-buttons button:hover {
+  background-color: #00a8ff;
+  color: white;
+}
+
+.form-area {
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+form {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px;
+  border: 1px solid #dcdde1;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  background-color: #0097e6;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #00a8ff;
+}
+
