@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import UserList from './components/UserList';
-import AddUser from './components/AddUser';
+//import UserList from './components/UserList';
+//import AddUser from './components/AddUser';
+import Signup from "./components/SignupForm";
+import Login from "./components/LoginForm";
 import './App.css';
 
-function App() {
+/*function App() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -27,6 +29,17 @@ function App() {
 
       <h2>Danh sách User</h2>
       <UserList users={users} />
+    </div>
+  );
+}*/
+function App() {
+  return (
+    <div className="container">
+      <h1>Authentication cơ bản</h1>
+      <div style={{ display: "flex", gap: "50px" }}>
+        <Signup />
+        <Login />
+      </div>
     </div>
   );
 }
