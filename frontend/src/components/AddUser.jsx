@@ -20,7 +20,7 @@ function AddUser({ onUserAdded }) {
     try {
       setLoading(true);
       setError("");
-      const res = await axios.post("http://localhost:5000/users", formData);
+      const res = await axios.post("http://localhost:3000/users", formData);
       alert("✅ Thêm user thành công!");
       setFormData({ name: "", email: "" });
       onUserAdded?.(res.data); // Gọi callback để cập nhật danh sách

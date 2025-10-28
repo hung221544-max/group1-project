@@ -277,4 +277,159 @@ button {
 button:hover {
   background-color: #00a8ff;
 }
+.auth-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+/* ===== Toàn bộ bố cục ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(120deg, #f5f5f5, #e3e3e3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* ===== Khung chính (chứa 2 tab Đăng nhập / Đăng ký) ===== */
+.auth-container {
+  background: #fff;
+  width: 380px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ===== Thanh tiêu đề ===== */
+.auth-header {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 2px solid #eee;
+  background: #fafafa;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 14px 0;
+  border: none;
+  background: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.3s ease;
+}
+
+.auth-tab.active {
+  color: #e60000;
+  border-bottom: 3px solid #e60000;
+}
+
+.auth-tab:hover {
+  color: #e60000;
+}
+
+/* ===== Nội dung form ===== */
+.auth-body {
+  padding: 30px;
+}
+
+/* ===== Form box chung ===== */
+.auth-form-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-title {
+  text-align: center;
+  color: #333;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+/* ===== Input ===== */
+.auth-input,
+.signup-input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.auth-input:focus,
+.signup-input:focus {
+  border-color: #e60000;
+  box-shadow: 0 0 5px rgba(230, 0, 0, 0.3);
+}
+
+/* ===== Nút chính (đỏ) ===== */
+/*.auth-button,
+.signup-btn-main {
+  width: 100%;
+  padding: 12px;
+  background: #e60000;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-button:hover,
+.signup-btn-main:hover {
+  background: #c10000;
+}*/
+
+/* ===== Nút chuyển tab (xám nhạt) ===== */
+.login-switch-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #f1f1f1;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.login-switch-btn:hover {
+  background: #ddd;
+}
+
+/* ===== Hiệu ứng nhỏ ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive cho điện thoại ===== */
+@media (max-width: 420px) {
+  .auth-container {
+    width: 90%;
+    border-radius: 12px;
+  }
+
+  .auth-tab {
+    font-size: 14px;
+  }
+}
+
 

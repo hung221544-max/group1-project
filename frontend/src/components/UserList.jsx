@@ -9,7 +9,7 @@ function UserList() {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/users");
+      const res = await axios.get("http://localhost:3000/users");
       setUsers(res.data);
     } catch (err) {
       console.error("❌ Lỗi khi tải danh sách:", err);
@@ -23,7 +23,7 @@ function UserList() {
   const handleDelete = async (id) => {
     if (!window.confirm("Bạn có chắc muốn xóa người dùng này?")) return;
     try {
-      await axios.delete(`http://localhost:5000/users/${id}`);
+      await axios.delete(`http://localhost:3000/users/${id}`);
       alert("🗑️ Đã xóa user thành công!");
       fetchUsers();
     } catch (err) {
@@ -40,7 +40,7 @@ function UserList() {
   const handleSave = async () => {
     try {
       setLoading(true);
-      await axios.put(`http://localhost:5000/users/${editingUserId}`, formEdit);
+      await axios.put(`http://localhost:3000/users/${editingUserId}`, formEdit);
       alert("✅ Cập nhật thành công!");
       setEditingUserId(null);
       fetchUsers();
