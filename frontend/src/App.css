@@ -1,435 +1,234 @@
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* Import font cho đẹp */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* ===== BODY ===== */
 body {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #e0f7fa, #f1f8e9);
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 50px 0;
-  color: #333;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f8f9fa; /* Nền xám nhạt cho toàn trang */
 }
 
-/* ===== CONTAINER ===== */
-.container {
-  width: 90%;
-  max-width: 1000px;
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  animation: fadeIn 1s ease;
+/* 1. Navbar (Cho AppNavbar) */
+.navbar {
+    display: flex;
+    background: #fff;
+    height: 60px;
+    align-items: center;
+    padding: 0 5%;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    /* Dính Navbar ở trên cùng */
+    position: sticky; 
+    top: 0;
+    left: 0;
+    width: 100%; /* Cần width 100% khi dùng sticky/fixed */
+    z-index: 1000;
+    box-sizing: border-box; /* Tính cả padding vào width */
 }
 
-/* ===== TIÊU ĐỀ ===== */
-h1 {
-  text-align: center;
-  font-size: 2.3rem;
-  letter-spacing: 0.5px;
-  background: linear-gradient(90deg, #00796b, #009688);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 30px;
+.nav-item {
+    padding: 0 16px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-h2 {
-  color: #444;
-  border-left: 4px solid #009688;
-  padding-left: 10px;
-  margin-bottom: 20px;
+.nav-item:hover {
+    color: #111;
 }
 
-/* ===== CARD ===== */
-.card {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 16px;
-  padding: 25px;
-  margin-bottom: 35px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-  transition: transform 0.3s ease;
+.nav-item.active {
+    color: #E53935; /* Màu đỏ chủ đạo */
+    border-bottom-color: #E53935;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-/* ===== INPUT FORM ===== */
-input {
-  padding: 12px 14px;
-  margin-right: 12px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  width: 220px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #333;
-  font-size: 15px;
-  outline: none;
-  transition: 0.3s;
-}
-
-input::placeholder {
-  color: #999;
-}
-
-input:focus {
-  border-color: #009688;
-  box-shadow: 0 0 5px #009688;
-}
-
-/* ===== BUTTON ===== */
-button {
-  border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: 0.3s;
-  color: white;
-  letter-spacing: 0.5px;
-}
-
-.btn-edit {
-  background: linear-gradient(135deg, #4fc3f7, #0288d1);
-}
-
-.btn-edit:hover {
-  background: linear-gradient(135deg, #29b6f6, #0277bd);
-}
-
-.btn-delete {
-  background: linear-gradient(135deg, #ef5350, #d32f2f);
-}
-
-.btn-delete:hover {
-  background: linear-gradient(135deg, #e53935, #c62828);
-}
-
-.btn-save {
-  background: linear-gradient(135deg, #66bb6a, #43a047);
-}
-
-.btn-cancel {
-  background: linear-gradient(135deg, #b0bec5, #90a4ae);
-  color: #333;
-}
-
-/* ===== BẢNG ===== */
-.user-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: center;
-  color: #333;
-}
-
-.user-table th {
-  background: rgba(0, 150, 136, 0.1);
-  padding: 12px;
-  border-radius: 8px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.user-table td {
-  padding: 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.user-table tr:hover {
-  background: rgba(0, 150, 136, 0.05);
-}
-
-/* ===== NÚT HÀNH ĐỘNG ===== */
-.action-buttons {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-
-/* ===== ANIMATION ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #e0e7ff, #fef9c3);
-  font-family: "Segoe UI", sans-serif;
-}
-
-.app-title {
-  color: #1e3a8a;
-  margin-bottom: 30px;
-  text-align: center;
-}
-
-.form-wrapper {
-  display: flex;
-  background: white;
-  padding: 30px 40px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  gap: 40px;
-}
-
-.form-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 280px;
-}
-
-.form-box h2 {
-  color: #2563eb;
-  margin-bottom: 10px;
-}
-
-.divider {
-  width: 2px;
-  background: #e5e7eb;
-  margin: 0 10px;
-}
-body {
-  font-family: "Segoe UI", sans-serif;
-  background-color: #f5f6fa;
-  margin: 0;
-  padding: 0;
-}
-
-.app-container {
-  text-align: center;
-  padding: 50px 20px;
-}
-
-.tab-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 20px;
-}
-
-.tab-buttons button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: #dcdde1;
-  transition: 0.3s;
-}
-
-.tab-buttons button.active {
-  background-color: #0097e6;
-  color: white;
-}
-
-.tab-buttons button:hover {
-  background-color: #00a8ff;
-  color: white;
-}
-
-.form-area {
-  max-width: 350px;
-  margin: 0 auto;
-}
-
-form {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 8px;
-  border: 1px solid #dcdde1;
-  border-radius: 5px;
-}
-
-button {
-  width: 100%;
-  background-color: #0097e6;
-  color: white;
-  border: none;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #00a8ff;
-}
-.auth-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-/* ===== Toàn bộ bố cục ===== */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(120deg, #f5f5f5, #e3e3e3);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* ===== Khung chính (chứa 2 tab Đăng nhập / Đăng ký) ===== */
+/* 2. Container chính (Cho AuthPage và Profile) */
 .auth-container {
-  background: #fff;
-  width: 380px;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  overflow: hidden;
-  animation: fadeIn 0.4s ease-in-out;
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 60px); /* Trừ đi chiều cao Navbar */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px 20px 20px; /* Thêm padding (top 60px) */
+    box-sizing: border-box;
 }
 
-/* ===== Thanh tiêu đề ===== */
+/* 3. Box chứa form (Thẻ card trắng) */
+.auth-form-box {
+    background: #fff;
+    width: 420px;
+    max-width: 100%;
+    padding: 30px; /* Giảm padding một chút */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* 4. CSS CHO TAB (Từ code App.jsx của bạn) */
 .auth-header {
   display: flex;
-  justify-content: space-around;
-  border-bottom: 2px solid #eee;
-  background: #fafafa;
+  border-bottom: 1px solid #ddd;
+  margin: -30px -30px 30px -30px; /* Mở rộng tab ra sát viền card */
+  border-top-left-radius: 12px; /* Bo góc theo card */
+  border-top-right-radius: 12px;
+  overflow: hidden; /* Giữ cho nút không bị tràn */
 }
 
 .auth-tab {
-  flex: 1;
-  padding: 14px 0;
-  border: none;
-  background: none;
+  flex: 1; /* Chia đều 2 bên */
+  padding: 15px;
   font-size: 16px;
   font-weight: 600;
+  text-align: center;
+  background: #f9f9f9; /* Màu nền xám nhạt cho tab */
+  border: none;
   cursor: pointer;
-  color: #555;
-  transition: all 0.3s ease;
-}
-
-.auth-tab.active {
-  color: #e60000;
-  border-bottom: 3px solid #e60000;
+  color: #888;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
 .auth-tab:hover {
-  color: #e60000;
-}
-
-/* ===== Nội dung form ===== */
-.auth-body {
-  padding: 30px;
-}
-
-/* ===== Form box chung ===== */
-.auth-form-box {
-  display: flex;
-  flex-direction: column;
-}
-
-.auth-title {
-  text-align: center;
+  background-color: #f0f0f0;
   color: #333;
-  font-size: 22px;
-  margin-bottom: 20px;
 }
 
-/* ===== Input ===== */
-.auth-input,
-.signup-input {
-  width: 100%;
-  padding: 12px 14px;
-  margin-bottom: 14px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 15px;
-  outline: none;
-  transition: 0.3s;
+.auth-tab.active {
+  color: #E53935;
+  border-bottom-color: #E53935;
+  background-color: #fff; /* Tab active có nền trắng */
 }
 
-.auth-input:focus,
-.signup-input:focus {
-  border-color: #e60000;
-  box-shadow: 0 0 5px rgba(230, 0, 0, 0.3);
+/* 5. Tiêu đề (Đăng nhập / Đăng ký) */
+.auth-title {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 600;
 }
 
-/* ===== Nút chính (đỏ) ===== */
-/*.auth-button,
-.signup-btn-main {
-  width: 100%;
-  padding: 12px;
-  background: #e60000;
-  border: none;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
+/* 6. Input (Phiên bản KHÔNG CÓ ICON) */
+.auth-input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 20px;
 }
 
-.auth-button:hover,
-.signup-btn-main:hover {
-  background: #c10000;
-}*/
-
-/* ===== Nút chuyển tab (xám nhạt) ===== */
-.login-switch-btn {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background: #f1f1f1;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.3s;
+.auth-input:focus {
+    outline: none;
+    border-color: #E53935;
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
 }
 
-.login-switch-btn:hover {
-  background: #ddd;
-}
-
-/* ===== Hiệu ứng nhỏ ===== */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===== Responsive cho điện thoại ===== */
-@media (max-width: 420px) {
-  .auth-container {
-    width: 90%;
-    border-radius: 12px;
-  }
-
-  .auth-tab {
+/* 7. Tùy chọn (Ghi nhớ & Quên mật khẩu) */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
     font-size: 14px;
-  }
 }
 
+.options .remember-me {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #555;
+}
 
+.options .remember-me input {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.options .forgot-password {
+    color: #E53935;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.options .forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* 8. Nút Đăng nhập/Đăng ký */
+.auth-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #E53935;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.auth-button:hover {
+    background: #C62828;
+}
+
+.auth-button:active {
+    transform: scale(0.98);
+}
+
+/* 9. Nút Đăng xuất */
+.logout-button {
+    background: #444; /* Màu xám đậm */
+    margin-top: 15px;
+}
+
+.logout-button:hover {
+    background: #666;
+}
+
+/* 10. Thông báo Lỗi/Thành công */
+.auth-message {
+    margin-top: 16px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* 11. Link Đăng ký/Đăng nhập (ở chân form) */
+.signup-link {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #555;
+}
+.signup-link a {
+    color: #E53935;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer; /* Biến thành con trỏ chuột */
+    margin-left: 5px;
+}
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* 12. CSS cho trang Home */
+.page-content {
+  text-align: center;
+  padding: 60px 20px 20px 20px; /* Thêm padding (top 60px) */
+}
+
+.page-content h1 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
