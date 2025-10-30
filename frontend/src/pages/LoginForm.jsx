@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
-// 1. Chỉ cần 'Link' và 'useNavigate'
 import { Link, useNavigate } from "react-router-dom";
 
-// 2. NHẬN PROPS: 'onSwitchToSignup'
+// Nhận props 'onSwitchToSignup' từ component cha (AuthPage)
 export default function LoginForm({ onSwitchToSignup }) {
   const [form, setForm] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
@@ -12,28 +11,37 @@ export default function LoginForm({ onSwitchToSignup }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // 1. GỌI API LOGIN
       const res = await axios.post("http://localhost:3000/api/login", form);
       setMessage("✅ " + (res.data.message || "Đăng nhập thành công!"));
 
-      // 3. LƯU TOKEN (Quan trọng)
-      if (res.data.token) {
-        localStorage.setItem("token", res.data.token);
+      // 2. LẤY DỮ LIỆU TỪ RESPONSE
+      // (Backend của bạn trả về { token, user: { ... } } )
+      const { token, user } = res.data;
+
+      // 3. LƯU CẢ TOKEN VÀ ROLE (PHẦN SỬA QUAN TRỌNG)
+      if (token) {
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", user.role); // <-- DÒNG NÀY ĐÃ ĐƯỢC THÊM
       }
 
-      setTimeout(() => navigate("/profile"), 1000);
+      // 4. CHUYỂN HƯỚNG DỰA TRÊN ROLE (PHẦN SỬA QUAN TRỌNG)
+      setTimeout(() => {
+        if (user.role === 'admin') {
+          navigate('/admin/users'); // Admin -> Trang quản lý
+        } else {
+          navigate('/profile'); // User -> Trang hồ sơ
+        }
+      }, 1000); // Chuyển hướng sau 1 giây
+
     } catch (err) {
       setMessage("❌ " + (err.response?.data?.message || "Đăng nhập thất bại!"));
     }
   };
 
+  // Phần JSX giữ nguyên như của bạn
   return (
-    // 4. BỎ <div.auth-container> VÀ <nav>
-    // Chỉ return nội dung của form
     <div>
-      {/* Chúng ta không cần <h2 className="auth-title"> vì tab đã
-        đóng vai trò là tiêu đề.
-      */}
-
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -80,7 +88,6 @@ export default function LoginForm({ onSwitchToSignup }) {
 
       <p className="signup-link">
         Bạn chưa có tài khoản?
-        {/* 5. Sửa Link -> Dùng <a> với onClick từ props */}
         <a onClick={onSwitchToSignup}>
           Đăng ký ngay
         </a>
