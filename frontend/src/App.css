@@ -1,68 +1,234 @@
+/* Import font cho đẹp */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f8f9fa; /* Nền xám nhạt cho toàn trang */
 }
 
-.container {
-  max-width: 600px;
-  margin: 50px auto; /* căn giữa */
-  text-align: center; /* căn chữ giữa */
+/* 1. Navbar (Cho AppNavbar) */
+.navbar {
+    display: flex;
+    background: #fff;
+    height: 60px;
+    align-items: center;
+    padding: 0 5%;
+    border-bottom: 1px solid #e0e0e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    
+    /* Dính Navbar ở trên cùng */
+    position: sticky; 
+    top: 0;
+    left: 0;
+    width: 100%; /* Cần width 100% khi dùng sticky/fixed */
+    z-index: 1000;
+    box-sizing: border-box; /* Tính cả padding vào width */
 }
 
-h1 {
-  font-size: 2em;
-  font-weight: bold;
+.nav-item {
+    padding: 0 16px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-h2 {
-  font-size: 1.3em;
-  margin-top: 30px;
+.nav-item:hover {
+    color: #111;
 }
 
-/* Form thêm user */
-.add-user-form {
+.nav-item.active {
+    color: #E53935; /* Màu đỏ chủ đạo */
+    border-bottom-color: #E53935;
+}
+
+/* 2. Container chính (Cho AuthPage và Profile) */
+.auth-container {
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 60px); /* Trừ đi chiều cao Navbar */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 20px 20px 20px; /* Thêm padding (top 60px) */
+    box-sizing: border-box;
+}
+
+/* 3. Box chứa form (Thẻ card trắng) */
+.auth-form-box {
+    background: #fff;
+    width: 420px;
+    max-width: 100%;
+    padding: 30px; /* Giảm padding một chút */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* 4. CSS CHO TAB (Từ code App.jsx của bạn) */
+.auth-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 30px;
+  border-bottom: 1px solid #ddd;
+  margin: -30px -30px 30px -30px; /* Mở rộng tab ra sát viền card */
+  border-top-left-radius: 12px; /* Bo góc theo card */
+  border-top-right-radius: 12px;
+  overflow: hidden; /* Giữ cho nút không bị tràn */
 }
 
-.add-user-form input {
-  width: 80%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 15px;
-}
-
-.add-user-form button {
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 15px;
-}
-
-.add-user-form button:hover {
-  background-color: #45a049;
-}
-
-/* Danh sách user */
-.user-list {
-  list-style: none;
-  padding: 0;
-}
-
-.user-item {
-  background-color: #f3f3f3;
-  margin: 5px 0;
-  padding: 12px;
-  border-radius: 6px;
-  text-align: center;
+.auth-tab {
+  flex: 1; /* Chia đều 2 bên */
+  padding: 15px;
   font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  background: #f9f9f9; /* Màu nền xám nhạt cho tab */
+  border: none;
+  cursor: pointer;
+  color: #888;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.auth-tab:hover {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+.auth-tab.active {
+  color: #E53935;
+  border-bottom-color: #E53935;
+  background-color: #fff; /* Tab active có nền trắng */
+}
+
+/* 5. Tiêu đề (Đăng nhập / Đăng ký) */
+.auth-title {
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* 6. Input (Phiên bản KHÔNG CÓ ICON) */
+.auth-input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: #E53935;
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.1);
+}
+
+/* 7. Tùy chọn (Ghi nhớ & Quên mật khẩu) */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    font-size: 14px;
+}
+
+.options .remember-me {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: #555;
+}
+
+.options .remember-me input {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+.options .forgot-password {
+    color: #E53935;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.options .forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* 8. Nút Đăng nhập/Đăng ký */
+.auth-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #E53935;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.auth-button:hover {
+    background: #C62828;
+}
+
+.auth-button:active {
+    transform: scale(0.98);
+}
+
+/* 9. Nút Đăng xuất */
+.logout-button {
+    background: #444; /* Màu xám đậm */
+    margin-top: 15px;
+}
+
+.logout-button:hover {
+    background: #666;
+}
+
+/* 10. Thông báo Lỗi/Thành công */
+.auth-message {
+    margin-top: 16px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+/* 11. Link Đăng ký/Đăng nhập (ở chân form) */
+.signup-link {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #555;
+}
+.signup-link a {
+    color: #E53935;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer; /* Biến thành con trỏ chuột */
+    margin-left: 5px;
+}
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+/* 12. CSS cho trang Home */
+.page-content {
+  text-align: center;
+  padding: 60px 20px 20px 20px; /* Thêm padding (top 60px) */
+}
+
+.page-content h1 {
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-weight: 600;
 }
