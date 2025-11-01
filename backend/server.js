@@ -1,76 +1,34 @@
-
-// ===============================
-// 🧩 IMPORT MODULES
-// ===============================
-import express from "express";
-import dotenv from "dotenv";
-import mongoose from "mongoose";
-import cors from "cors";
-
-// ===============================
-// 🧩 IMPORT ROUTES
-// ===============================
-import authRoutes from "./routes/auth.js";        // 🔐 Đăng ký, đăng nhập
-import profileRoutes from "./routes/profile.js";  // 👤 Hồ sơ người dùng
-import userRoutes from "./routes/user.js";        // 🧑‍💼 Quản lý user (Admin)
-import adminRoutes from "./routes/admin.js";      // 🧠 Route quản lý hệ thống (Admin)
-
-// ===============================
-// ⚙️ CẤU HÌNH CƠ BẢN
-// ===============================
-dotenv.config();
-const app = express();
-
-// Cho phép nhận JSON từ client (Postman, frontend, v.v)
-app.use(express.json());
-
-// Cho phép request từ domain khác (frontend React, v.v)
-app.use(cors());
-
-// ===============================
-// 🚏 ĐỊNH NGHĨA ROUTES CHÍNH
-// ===============================
-app.use("/api", authRoutes);              // 🔐 Đăng ký, đăng nhập
-app.use("/api/profile", profileRoutes);   // 👤 Hồ sơ người dùng
-app.use("/api/users", userRoutes);        // 🧑‍💼 Quản lý user (Admin)
-app.use("/api/admin", adminRoutes);       // 🧠 API cho Admin
-
-// ===============================
-// ⚡ KẾT NỐI MONGODB
-// ===============================
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB kết nối thành công"))
-  .catch((err) => console.error("❌ Lỗi kết nối MongoDB:", err));
-
-// ===============================
-// 🚀 KHỞI ĐỘNG SERVER
-// ===============================
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`🚀 Server đang chạy tại http://localhost:${PORT}`);
-});
-=======
-require('dotenv').config(); // ⚠️ dòng này luôn nằm đầu tiên!
-
 const express = require('express');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 const cors = require('cors');
+const userRoutes = require('./routes/user');
+
+dotenv.config();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors()); // Cho phép frontend ở port khác gọi API
 
-// ✅ Thử in ra xem biến MONGO_URI có giá trị không
-console.log("🧭 MONGO_URI =", process.env.MONGO_URI);
-
-// ✅ Kết nối MongoDB
+// Kết nối MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB kết nối thành công"))
-  .catch(err => console.error("❌ MongoDB kết nối bị lỗi:", err));
+  .catch(err => console.error("❌ MongoDB kết nối bị lỗi", err));
 
-const userRoutes = require('./routes/user');
-app.use('/', userRoutes);
+// Sử dụng routes
+app.use('/users', userRoutes);
+const authRoutes = require('./routes/authRoutes');
+app.use('/api', authRoutes);
+app.use('/api', require('./routes/profileRoutes'));
 
-const PORT = process.env.PORT || 3000;
+
+// Đổi port sang 5000
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
 
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/api', adminRoutes);
+const passwordRoutes = require('./routes/passwordRoutes');
+const profileRoutes = require('./routes/profileRoutes');
+app.use('/api', passwordRoutes);
+app.use('/api', profileRoutes);

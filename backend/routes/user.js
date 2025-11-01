@@ -1,22 +1,13 @@
-import express from "express";
-import { verifyToken, verifyAdmin } from "../middleware/authMiddleware.js";
-import { getAllUsers, deleteUser } from "../controllers/userController.js";
-
+const express = require('express');
 const router = express.Router();
+const userController = require('../controllers/userController');
 
+// Khi server.js đã dùng '/users', ở đây chỉ cần '/' là đủ
+router.get('/', userController.getUsers); 
+router.post('/', userController.createUser);
 
-// 🧩 Chỉ admin mới xem được danh sách user
-router.get("/", verifyToken, verifyAdmin, getAllUsers);
-
-// 🧩 Admin hoặc chính chủ mới xóa được user
-router.delete("/:id", verifyToken, verifyAdmin, deleteUser);
-
-export default router;
-
-router.get('/users', userController.getUsers);
-router.post('/users', userController.createUser);
-router.put('/users/:id', userController.updateUser);
-router.delete('/users/:id', userController.deleteUser);
+// Tương tự, chỉ cần '/:id'
+router.put('/:id', userController.updateUser);
+router.delete('/:id', userController.deleteUser);
 
 module.exports = router;
-
